@@ -2,28 +2,50 @@ import React, { useState } from "react";
 
 interface TeammateState {
   name: string;
+  mainRole: string;
 }
 
 interface Props {}
 
 const TeamBuilder: React.FC<Props> = () => {
+  const [playerName, setPlayerName] = useState<string>("");
+  const [mainRole, setMainRole] = useState<string>("");
   const [teammateInfo, setTeammateInfo] = useState<TeammateState[]>([
-    { name: "Player1" },
+    { name: "Player1", mainRole: "mid" },
   ]);
 
-  console.log("Added new team member: " + teammateInfo);
+  const handleSubmit = () => {
+    const newTeammate = [
+      ...teammateInfo,
+      { name: playerName, mainRole: mainRole },
+    ];
+    setTeammateInfo(newTeammate);
+    setPlayerName("");
+    setMainRole("");
+  };
 
   return (
     <div>
       <h3>Clash Team Builder</h3>
       <hr />
-      <button
-        onClick={() =>
-          setTeammateInfo([...teammateInfo, { name: "New member" }])
-        }
-      >
-        Add new team member
-      </button>
+      <div>
+        <input
+          value={playerName}
+          onChange={(e) => setPlayerName(e.currentTarget.value)}
+        />
+        <input
+          value={mainRole}
+          onChange={(e) => setMainRole(e.currentTarget.value)}
+        />
+        <button onClick={handleSubmit}>Submit</button>
+      </div>
+      <div>
+        {teammateInfo.map((teammate) => (
+          <div key={teammate.name}>
+            {teammate.name} {teammate.mainRole}
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
