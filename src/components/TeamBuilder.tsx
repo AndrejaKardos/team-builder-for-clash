@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Button } from "react-bootstrap";
 
 interface TeammateState {
   name: string;
@@ -27,6 +28,7 @@ const TeamBuilder: React.FC<Props> = () => {
   return (
     <div>
       <h3>Clash Team Builder</h3>
+      <Button variant="primary">Primary</Button>
       <hr />
       <div>
         <input
