@@ -1,0 +1,27 @@
+h3 {
+  justify-content: center;
+  text-align: center;
+}
+
+.teambuilder__form {
+  display: flex;
+  justify-content: center;
+}
+
+.teambuilder__input {
+  display: flex;
+  gap: 10px;
+}
+
+.teambuilder__input--name {
+  width: 200px;
+}
+
+.teambuilder__input--role {
+  width: 100px;
+}
+
+.teambuilder__team-info {
+  margin: 30px;
+  text-align: center;
+}

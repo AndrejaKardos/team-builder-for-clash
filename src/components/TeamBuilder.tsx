@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Button } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
+import "./TeamBuilder.css";
 
 interface TeammateState {
   name: string;
@@ -26,22 +27,31 @@ const TeamBuilder: React.FC<Props> = () => {
   };
 
   return (
-    <div>
+    <div className="teambuilder">
       <h3>Clash Team Builder</h3>
-      <Button variant="primary">Primary</Button>
+
       <hr />
-      <div>
-        <input
-          value={playerName}
-          onChange={(e) => setPlayerName(e.currentTarget.value)}
-        />
-        <input
-          value={mainRole}
-          onChange={(e) => setMainRole(e.currentTarget.value)}
-        />
-        <button onClick={handleSubmit}>Submit</button>
-      </div>
-      <div>
+
+      <Form className="teambuilder__form">
+        <Form.Group className="teambuilder__input">
+          <Form.Control
+            className="teambuilder__input--name"
+            placeholder="Player Name"
+            value={playerName}
+            onChange={(e) => setPlayerName(e.currentTarget.value)}
+          />
+          <Form.Control
+            className="teambuilder__input--role"
+            placeholder="Role"
+            value={mainRole}
+            onChange={(e) => setMainRole(e.currentTarget.value)}
+          />
+          <Button variant="primary" onClick={handleSubmit}>
+            Submit
+          </Button>
+        </Form.Group>
+      </Form>
+      <div className="teambuilder__team-info">
         {teammateInfo.map((teammate) => (
           <div key={teammate.name}>
             {teammate.name} {teammate.mainRole}
