@@ -17,13 +17,15 @@ const TeamBuilder: React.FC<Props> = () => {
   ]);
 
   const handleSubmit = () => {
-    const newTeammate = [
-      ...teammateInfo,
-      { name: playerName, mainRole: mainRole },
-    ];
-    setTeammateInfo(newTeammate);
-    setPlayerName("");
-    setMainRole("");
+    if (playerName !== "" && mainRole !== "Role") {
+      const newTeammate = [
+        ...teammateInfo,
+        { name: playerName, mainRole: mainRole },
+      ];
+      setTeammateInfo(newTeammate);
+      setPlayerName("");
+      setMainRole("");
+    }
   };
 
   return (
@@ -40,12 +42,19 @@ const TeamBuilder: React.FC<Props> = () => {
             value={playerName}
             onChange={(e) => setPlayerName(e.currentTarget.value)}
           />
-          <Form.Control
-            className="teambuilder__input--role"
-            placeholder="Role"
+
+          <Form.Select
             value={mainRole}
             onChange={(e) => setMainRole(e.currentTarget.value)}
-          />
+          >
+            <option value="placeholder">Role</option>
+            <option value="Top">Top</option>
+            <option value="Jungle">Jungle</option>
+            <option value="Mid">Mid</option>
+            <option value="ADC">ADC</option>
+            <option value="Support">Support</option>
+          </Form.Select>
+
           <Button variant="primary" onClick={handleSubmit}>
             Submit
           </Button>
